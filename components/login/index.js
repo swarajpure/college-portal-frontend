@@ -5,13 +5,14 @@ export default class Login extends React.Component {
     handleSubmit = (e) => {
         console.log(this.state)
         e.preventDefault();
-        fetch('http://localhost:3000/users/login', {
+        fetch('http://localhost:4000/users/login', {
             method: 'POST',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
+            credentials: 'include',
             body: JSON.stringify(this.state)
         }).then(res => console.log(res))
             .catch(function (err) { console.log(err) })
