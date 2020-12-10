@@ -3,6 +3,7 @@ import React from 'react'
 
 export default class Login extends React.Component {
     handleSubmit = (e) => {
+        let msg;
         console.log(this.state)
         e.preventDefault();
         fetch('http://localhost:4000/users/login', {
@@ -14,8 +15,12 @@ export default class Login extends React.Component {
             },
             credentials: 'include',
             body: JSON.stringify(this.state)
-        }).then(res => console.log(res))
-            .catch(function (err) { console.log(err) })
+        }).then(res => res.json())
+        .then(res=> {
+            msg = res.message
+            document.getElementById('login-msg').innerText = msg
+        })
+        .catch(function (err) { console.log(err) })
     }
     handleChange = (e) => {
         this.setState({
@@ -25,7 +30,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className='container'>
-                <h1>Login</h1>
+                <h1 id='login-msg'>Login</h1>
                 <div className='form'>
                     <form onSubmit={this.handleSubmit} id='form'>
                         {/* <label>Enter email</label><br></br> */}
