@@ -1,5 +1,5 @@
-import Posts from '../components/posts'
-import postsData from '../mock/posts.json'
+import Posts from '../../components/posts'
+import postsData from '../../mock/posts.json'
 
 const displayPosts = () => {
     return (
