@@ -1,5 +1,20 @@
-const Posts = ({postsList}) => {
-    const DisplayPost = postsList.map(post => {
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const Posts = () => {
+    const [posts, setPosts] = useState([]);
+    useEffect( () => {
+        axios.get('http://localhost:4000/posts/', { withCredentials: true}).
+        then((res) => {
+            console.log(res)
+            setPosts(res.data)
+            
+        })
+        .catch((err) => console.log(err))
+    }, []);
+    // console.log(posts)
+    // const postsList = posts
+    const DisplayPost = posts.map(post => {
         return(
             <div className='postBody'>
                 <div className='contentAndAuthor'>
@@ -39,11 +54,12 @@ const Posts = ({postsList}) => {
                 </style>
             </div>
         )
-    })
+    } )
 
     return(
         <div className='allPosts'>
-            {DisplayPost}
+            HELLO
+            { DisplayPost }
             <style jsx>
                 {`
                 .allPosts {
