@@ -8,7 +8,6 @@
 }
 
 .main {
-  padding: 5rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -35,7 +34,7 @@
   align-items: center;
 }
 
-.title a {
+#projectName {
   color: #0070f3;
   text-decoration: none;
 }
@@ -77,7 +76,6 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
-  margin-top: 3rem;
 }
 
 .card {

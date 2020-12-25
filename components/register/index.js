@@ -4,7 +4,7 @@ export default class Register extends React.Component {
     showName = (e) => {
         console.log(JSON.stringify(this.state))
         e.preventDefault();
-        fetch('http://localhost:3000/users/register', {
+        fetch('http://localhost:4000/users/register', {
             method: 'POST',
             mode: 'cors',
             headers: {
