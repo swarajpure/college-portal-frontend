@@ -8,12 +8,10 @@ const Posts = () => {
         then((res) => {
             console.log(res)
             setPosts(res.data)
-            
         })
         .catch((err) => console.log(err))
     }, []);
-    // console.log(posts)
-    // const postsList = posts
+    
     const DisplayPost = posts.map(post => {
         return(
             <div className='postBody'>
@@ -58,7 +56,6 @@ const Posts = () => {
 
     return(
         <div className='allPosts'>
-            HELLO
             { DisplayPost }
             <style jsx>
                 {`

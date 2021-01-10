@@ -7,7 +7,10 @@ const CreatePost = () => {
 
     useEffect(() => {
         Axios.get('http://localhost:4000/users/self', {withCredentials : true})
-        .then(res => setAuthor(res.data.name))
+        .then(res => { 
+            setAuthor(res.data.name)
+            document.getElementById('message').innerText = res.message
+        })
         .catch(err => console.log(err))
     }, []);
     console.log(author)
@@ -30,6 +33,7 @@ const CreatePost = () => {
     console.log(content)
     return(
         <div className='container'>
+            <h1 id='message'></h1>
             <input id='content' type='text' placeholder='Enter your message here!' onChange={changeContent}></input>
             <button type='submit' onClick={submitHandler}>Post</button>
             <style jsx>

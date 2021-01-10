@@ -17,7 +17,8 @@ export default class Login extends React.Component {
             body: JSON.stringify(this.state)
         }).then(res => res.json())
         .then(res=> {
-            msg = res.message
+            console.log(res)
+            const msg = res.message
             document.getElementById('login-msg').innerText = msg
         })
         .catch(function (err) { console.log(err) })
