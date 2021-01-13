@@ -32,7 +32,6 @@ const Submissions = () => {
             <li><ul>{submission.name} : <a href={submission.link}>{submission.link}</a></ul></li>
           )
         })}
-        
         <style jsx>{`
           .submission{
             padding: 20px;
@@ -57,8 +56,76 @@ const Submissions = () => {
     )
   })
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const title = e.target[0].value
+    const description = e.target[1].value
+    const deadline = e.target[2].value
+    const data = { title, description, deadline }
+    axios({
+      url: 'http://localhost:4000/submissions/create',
+      method: 'POST',
+      data: data,
+      withCredentials: true
+    })
+    .then(res => {
+      console.log(res.data)
+      document.getElementById('message').innerText = res.data.message
+    })
+    .catch(err => console.error(err))
+  }
+
   return(
-    <div>{showSubmissions}</div>
+    <div>
+      <div className="createAssignment">
+        <div><h2 id="message">Create a new assignment</h2></div>
+          <div><form onSubmit={submitHandler}>
+            <div><input type="text" placeholder="Title" id="title"></input></div>
+            <div><input type="text" placeholder="Description" id="description"></input></div>
+            <div><input type="text" placeholder="Deadline" id="deadline"></input></div>
+            <button>Submit</button>
+          </form>
+          </div>
+          <style jsx>
+            {`
+              .createAssignment{
+                text-align: center;
+                padding: 20px;
+                margin: 2% 35%;
+                border: 1px solid #f4f4f4;
+                border-radius: 10px;
+                box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+              }
+              input {
+                border: 0.5px solid #ccc;
+                border-radius: 5px;
+                padding: 10px;
+                padding-left: 10px;
+                margin-bottom: 15px;
+                font-size: 1rem;
+                width: 40%;
+              }
+              button {
+                margin: 0 auto;
+                display: block;
+                width: 40%;
+                padding: 10px;
+                border-radius: 1px;
+                text-decoration: none;
+                border: none;
+                box-shadow: 0 0 15px -7px rgba(0,0,0,.65);
+                background-color: limegreen;
+                border-radius: 4px;
+                cursor: pointer;
+              }
+              button:hover{
+                box-shadow: 1px 1px 18px -5px rgba(0,0,0,.65)
+              }
+            `}
+          </style>
+        </div>
+      {showSubmissions}
+      </div>
   )
   }
 

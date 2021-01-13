@@ -20,10 +20,9 @@ const Assignments = () => {
     
     const submitHandler = (e) => {
       e.preventDefault();
-      const {name} = userData;
       const id = e.target.parentElement.id;
       const link = e.target[0].value;
-      const body = {id, link, name};
+      const body = {id, link};
       axios({
         url: 'http://localhost:4000/assignments/submit',
         method: 'POST',
