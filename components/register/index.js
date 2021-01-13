@@ -44,9 +44,9 @@ export default class Register extends React.Component {
                     <br></br>
                     <div className='role-input'>
                         <label>Enter role</label><br></br>
-                        <input type="radio" id="role" value="student" onChange={this.handleChange} />
+                        <input name="role" type="radio" id="role" value="student" onChange={this.handleChange} />
                         <label htmlFor="role">Student</label>
-                        <input type="radio" id="role" value="teacher" onChange={this.handleChange} />
+                        <input name="role" type="radio" id="role" value="teacher" onChange={this.handleChange} />
                         <label htmlFor="role">Teacher</label>
                         <br></br>
                     </div>
