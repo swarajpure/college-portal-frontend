@@ -51,22 +51,65 @@ export default class Login extends React.Component {
                 </div>
                 < style jsx >
                     {`
+                        // .container{
+                        //     margin: 20px auto;
+                        //     border-radius: 7%;
+                        //     box-shadow: 1px 1px 20px 2px #ccc;
+                        //     display: flex;
+                        //     justify-content: center;
+                        //     flex-direction: column;
+                        //     width: 20%;
+                        //     padding-top: 20px;
+                        //     padding-bottom: 40px;
+                        //     margin-top: 150px;
+                        // }
+                        
+                        // h1 {
+                        //     text-align: center;
+                        // }
+                        // .form {
+                        //     display: flex;
+                        //     justify-content: center;
+                        // }
+
+                        // input {
+                        //     border: 0.5px solid #ccc;
+                        //     border-radius: 2px;
+                        //     padding: 4px;
+                        //     padding-left: 10px;
+                        //     margin-bottom: 15px;
+                        //     font-size: 1rem;
+                        // }
+
+                        // #labelRole {
+                        //     text-align: center;
+                        // }
+
+                        // .submit {
+                        //     margin-left: 30%;
+                        //     padding: 10px;
+                        //     border-radius: 1px;
+                        //     text-decoration: none;
+                        //     border: none;
+                        //     box-shadow: 1px 1px 10px 2px #ccc;
+                        //     background-color: #a5bfed
+                        // }
                         .container{
-                            margin: 20px auto;
+                            margin: 10% auto;
                             border-radius: 7%;
                             box-shadow: 1px 1px 20px 2px #ccc;
                             display: flex;
                             justify-content: center;
                             flex-direction: column;
-                            width: 20%;
+                            width: 35%;
                             padding-top: 20px;
                             padding-bottom: 40px;
-                            margin-top: 150px;
                         }
                         
                         h1 {
                             text-align: center;
                         }
+
                         .form {
                             display: flex;
                             justify-content: center;
@@ -74,8 +117,8 @@ export default class Login extends React.Component {
 
                         input {
                             border: 0.5px solid #ccc;
-                            border-radius: 2px;
-                            padding: 4px;
+                            border-radius: 5px;
+                            padding: 10px;
                             padding-left: 10px;
                             margin-bottom: 15px;
                             font-size: 1rem;
@@ -86,16 +129,22 @@ export default class Login extends React.Component {
                         }
 
                         .submit {
-                            margin-left: 30%;
+                            margin: 0 auto;
+                            display: block;
+                            width: 100%;
                             padding: 10px;
                             border-radius: 1px;
                             text-decoration: none;
                             border: none;
-                            box-shadow: 1px 1px 10px 2px #ccc;
-                            background-color: #a5bfed
+                            box-shadow: 0 0 15px -7px rgba(0,0,0,.65);
+                            background-color: #37ec1d;
+                            border-radius: 4px;
+                            cursor: pointer;
                         }
                         
-                        
+                        .submit:hover {
+                            box-shadow: 1px 1px 18px -5px rgba(0,0,0,.65);
+                        }
             `}
                 </style>
             </div>
