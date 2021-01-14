@@ -17,6 +17,9 @@ export default class Register extends React.Component {
         .then(res => {
             const msg = res.message
             document.getElementById('register-msg').innerText = msg
+            if(msg === 'Registration successful!'){
+                window.location = 'http://localhost:3000/login';
+            }
         })
         .catch(function(err){
             console.log(err);

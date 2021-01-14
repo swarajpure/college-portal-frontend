@@ -1,20 +1,31 @@
 import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Navbar from '../navbar';
 
 const Submissions = () => {
   const [submissions, setsubmissions] = useState([]);
   const [userData, setUserData] = useState(null);
   useEffect(() => {
-    axios.get('http://localhost:4000/submissions', { withCredentials: true })
-    .then((res) => {
-      setsubmissions(res.data)})
-    .catch ((err) => { console.log(err)})
-
     axios.get('http://localhost:4000/users/self', {withCredentials: true})
     .then(res => {
       setUserData(res.data)
     })
+    .catch(err => {
+      alert(err.response.data.message)
+      window.location = 'http://localhost:3000/login'
+    })
+
+    axios.get('http://localhost:4000/submissions', { withCredentials: true })
+    .then((res) => {
+      setsubmissions(res.data)})
+    .catch ((err) => { 
+      console.log(err)
+      alert(err.response.data.message)
+      window.location = 'http://localhost:3000/'
+    })
+
+    
     }, []);
 
   const showSubmissions = submissions.map(submission => {
@@ -77,6 +88,7 @@ const Submissions = () => {
 
   return(
     <div>
+      <Navbar />
       <div className="createAssignment">
         <div><h2 id="message">Create a new assignment</h2></div>
           <div><form onSubmit={submitHandler}>

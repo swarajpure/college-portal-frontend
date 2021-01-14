@@ -20,6 +20,9 @@ export default class Login extends React.Component {
             console.log(res)
             const msg = res.message
             document.getElementById('login-msg').innerText = msg
+            if(msg === 'Login Successful!'){
+                window.location = 'http://localhost:3000/';
+            }
         })
         .catch(function (err) { console.log(err) })
     }

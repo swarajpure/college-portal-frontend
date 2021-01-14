@@ -6,16 +6,23 @@ const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [userData, setUserData] = useState(null);
   useEffect(() => {
+    axios.get('http://localhost:4000/users/self', {withCredentials: true})
+    .then(res => {
+      setUserData(res.data)
+    })
+    .catch(err => {
+      alert(err.response.data.message)
+      window.location = 'http://localhost:3000/login'
+    })
+
+    }, []);
+
     axios.get('http://localhost:4000/assignments', { withCredentials: true })
     .then((res) => {
       setAssignments(res.data)})
     .catch ((err) => { console.log(err)})
 
-    axios.get('http://localhost:4000/users/self', {withCredentials: true})
-    .then(res => {
-      setUserData(res.data)
-    })
-    }, []);
+    
 
     
     const submitHandler = (e) => {
@@ -29,7 +36,10 @@ const Assignments = () => {
         data: body,
         withCredentials: true
       })
-      .then(res => console.log(res.data))
+      .then(res => {
+        alert(`${res.data.message}`)
+        console.log(res.data)
+      })
       .catch(err => console.error(err))
     }
 
@@ -42,7 +52,7 @@ const Assignments = () => {
           <div><b>From:</b> {from}</div>
           <div><b>Created On: </b>{createdOn}</div>
           <div><b>Deadline: </b>{deadline}</div>
-          <form onSubmit={submitHandler}>
+          <form id="form-message" onSubmit={submitHandler}>
             <input type="url" placeholder="Submit your assignment's drive link:"></input>
             <button>Submit</button>
           </form>
