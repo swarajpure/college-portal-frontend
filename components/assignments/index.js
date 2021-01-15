@@ -1,63 +1,76 @@
 import axios from 'axios';
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
-  const [userData, setUserData] = useState(null);
   useEffect(() => {
-    axios.get('http://localhost:4000/users/self', {withCredentials: true})
-    .then(res => {
-      setUserData(res.data)
-    })
-    .catch(err => {
-      alert(err.response.data.message)
-      window.location = 'http://localhost:3000/login'
-    })
+    axios.get('http://localhost:4000/users/self', { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+        window.location = 'http://localhost:3000/login';
+      });
+  }, []);
 
-    }, []);
-
-    axios.get('http://localhost:4000/assignments', { withCredentials: true })
+  axios.get('http://localhost:4000/assignments', { withCredentials: true })
     .then((res) => {
-      setAssignments(res.data)})
-    .catch ((err) => { console.log(err)})
+      setAssignments(res.data);
+    })
+    .catch((err) => { console.log(err); });
 
-    
-
-    
-    const submitHandler = (e) => {
-      e.preventDefault();
-      const id = e.target.parentElement.id;
-      const link = e.target[0].value;
-      const body = {id, link};
-      axios({
-        url: 'http://localhost:4000/assignments/submit',
-        method: 'POST',
-        data: body,
-        withCredentials: true
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const { id } = e.target.parentElement;
+    const link = e.target[0].value;
+    const body = { id, link };
+    axios({
+      url: 'http://localhost:4000/assignments/submit',
+      method: 'POST',
+      data: body,
+      withCredentials: true,
+    })
+      .then((res) => {
+        alert(`${res.data.message}`);
+        console.log(res.data);
       })
-      .then(res => {
-        alert(`${res.data.message}`)
-        console.log(res.data)
-      })
-      .catch(err => console.error(err))
-    }
+      .catch((err) => console.error(err));
+  };
 
-    const displayAssignments = assignments.map(assignment => {
-      const {id, title, description, createdOn, deadline, from} = assignment 
-      return(
-        <div className="assignment" key={id} id={id}>
-          <h2 className="title"> {title}</h2>
-          <div><b>Description: </b>{description}</div>
-          <div><b>From:</b> {from}</div>
-          <div><b>Created On: </b>{createdOn}</div>
-          <div><b>Deadline: </b>{deadline}</div>
-          <form id="form-message" onSubmit={submitHandler}>
-            <input type="url" placeholder="Submit your assignment's drive link:"></input>
-            <button>Submit</button>
-          </form>
-          <style jsx>
-            {`
+  const displayAssignments = assignments.map((assignment) => {
+    const {
+      id, title, description, createdOn, deadline, from,
+    } = assignment;
+    return (
+      <div className="assignment" key={id} id={id}>
+        <h2 className="title">
+          {' '}
+          {title}
+        </h2>
+        <div>
+          <b>Description: </b>
+          {description}
+        </div>
+        <div>
+          <b>From:</b>
+          {' '}
+          {from}
+        </div>
+        <div>
+          <b>Created On: </b>
+          {createdOn}
+        </div>
+        <div>
+          <b>Deadline: </b>
+          {deadline}
+        </div>
+        <form id="form-message" onSubmit={submitHandler}>
+          <input type="url" placeholder="Submit your assignment's drive link:" />
+          <button type="submit">Submit</button>
+        </form>
+        <style jsx>
+          {`
               .assignment{
                 padding: 20px;
                 margin: 2% 25%;
@@ -87,16 +100,16 @@ const Assignments = () => {
                 margin-left: 10px;
               }
             `}
-          </style>
-        </div>
-      )
-      })
+        </style>
+      </div>
+    );
+  });
 
-  return(
+  return (
     <div>
       {displayAssignments}
     </div>
-  )
-}
+  );
+};
 
 export default Assignments;

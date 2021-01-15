@@ -1,120 +1,63 @@
-import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import styles from './Register.module.css';
 
-export default class Register extends React.Component {
-    showName = (e) => {
-        console.log(JSON.stringify(this.state))
-        e.preventDefault();
-        fetch('http://localhost:4000/users/register', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(this.state)
-        })
-        .then(res => res.json())
-        .then(res => {
-            const msg = res.message
-            document.getElementById('register-msg').innerText = msg
-            if(msg === 'Registration successful!'){
-                window.location = 'http://localhost:3000/login';
-            }
-        })
-        .catch(function(err){
-            console.log(err);
-        })
-    }
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
-    render(){
-    return(
-        <div className="container">
-                <h1 id='register-msg'>Register</h1>
-            <div className="form">
-                <form onSubmit={ this.showName }>
-                    {/* <label>Enter name</label><br></br> */}
-                    <input type="text" id="name" placeholder="Enter name" required minLength="6" onChange={this.handleChange} />
-                    <br></br>
-                    {/* <label>Enter email</label><br></br> */}
-                    <input type="text" id="email" placeholder="Enter email" onChange={this.handleChange} />
-                    <br></br>
-                    {/* <label>Enter password</label><br></br> */}
-                    <input type="password" id="password" placeholder="Enter password" onChange={this.handleChange} />
-                    <br></br>
-                    <div className='role-input'>
-                        <label>Enter role</label><br></br>
-                        <input name="role" type="radio" id="role" value="student" onChange={this.handleChange} />
-                        <label htmlFor="role">Student</label>
-                        <input name="role" type="radio" id="role" value="teacher" onChange={this.handleChange} />
-                        <label htmlFor="role">Teacher</label>
-                        <br></br>
-                    </div>
-                    <button className='submit'>Submit</button>
-                    <div className="displayResponse"></div>
-                </form>
-            </div>
-            < style jsx >
-                    {`
-                        .container{
-                            margin: 10% auto;
-                            border-radius: 7%;
-                            box-shadow: 1px 1px 20px 2px #ccc;
-                            display: flex;
-                            justify-content: center;
-                            flex-direction: column;
-                            width: 35%;
-                            padding-top: 20px;
-                            padding-bottom: 40px;
-                        }
-                        
-                        h1 {
-                            text-align: center;
-                        }
+const Register = () => {
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [role, setRole] = useState('student');
+  const [message, setMessage] = useState('Register');
 
-                        .form {
-                            display: flex;
-                            justify-content: center;
-                        }
+  const selectRole = (selectedRole, bool) => {
+    if (bool) setRole(`${selectedRole}`);
+  };
 
-                        input {
-                            border: 0.5px solid #ccc;
-                            border-radius: 5px;
-                            padding: 10px;
-                            padding-left: 10px;
-                            margin-bottom: 15px;
-                            font-size: 1rem;
-                        }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const data = {
+      name, email, password, role,
+    };
+    axios({
+      url: 'http://localhost:4000/users/register',
+      method: 'POST',
+      data,
+      withCredentials: true,
+    })
+      .then((res) => {
+        setMessage(res.data.message);
+        if (res.statusText === 'OK') {
+          window.location = 'http://localhost:3000/login';
+        }
+      })
+      .catch((err) => setMessage(err.response.data.message));
+  };
 
-                        #labelRole {
-                            text-align: center;
-                        }
+  return (
+    <div className={styles.container}>
+      <h1 id={styles.registerMsg}>{ message }</h1>
+      <div className={styles.form}>
+        <form onSubmit={submitHandler}>
+          <div><input type="text" className={styles.input} id="name" placeholder="Enter name" required onChange={(e) => setName(e.target.value)} /></div>
+          <div><input type="email" className={styles.input} id="email" placeholder="Enter email" required onChange={(e) => setEmail(e.target.value)} /></div>
+          <div><input type="password" className={styles.input} id="password" placeholder="Enter password" required onChange={(e) => setPassword(e.target.value)} /></div>
+          <div className={styles.roleText}>Enter Role:</div>
+          <div className={styles.roleSelect}>
+            <label htmlFor="role">
+              Student
+              <input name="role" type="radio" id="role" value="student" defaultChecked onChange={(e) => selectRole(e.target.value, e.target.checked)} />
+            </label>
 
-                        .submit {
-                            margin: 0 auto;
-                            display: block;
-                            width: 100%;
-                            padding: 10px;
-                            border-radius: 1px;
-                            text-decoration: none;
-                            border: none;
-                            box-shadow: 0 0 15px -7px rgba(0,0,0,.65);
-                            background-color: #37ec1d;
-                            border-radius: 4px;
-                            cursor: pointer;
-                        }
-                        
-                        .submit:hover {
-                            box-shadow: 1px 1px 18px -5px rgba(0,0,0,.65);
-                        }
-                        
-            `}
-        </style>
+            <label htmlFor="role">
+              Teacher
+              <input name="role" type="radio" id="role" value="teacher" onChange={(e) => selectRole(e.target.value, e.target.checked)} />
+            </label>
+          </div>
+          <button className={styles.submit} type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-        </div>
-    )
-    }
-}
+export default Register;

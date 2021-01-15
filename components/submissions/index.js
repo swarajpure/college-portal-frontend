@@ -1,49 +1,73 @@
 import axios from 'axios';
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import Navbar from '../navbar';
 
 const Submissions = () => {
   const [submissions, setsubmissions] = useState([]);
   const [userData, setUserData] = useState(null);
   useEffect(() => {
-    axios.get('http://localhost:4000/users/self', {withCredentials: true})
-    .then(res => {
-      setUserData(res.data)
-    })
-    .catch(err => {
-      alert(err.response.data.message)
-      window.location = 'http://localhost:3000/login'
-    })
+    axios.get('http://localhost:4000/users/self', { withCredentials: true })
+      .then((res) => {
+        setUserData(res.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+        window.location = 'http://localhost:3000/login';
+      });
 
     axios.get('http://localhost:4000/submissions', { withCredentials: true })
-    .then((res) => {
-      setsubmissions(res.data)})
-    .catch ((err) => { 
-      console.log(err)
-      alert(err.response.data.message)
-      window.location = 'http://localhost:3000/'
-    })
+      .then((res) => {
+        setsubmissions(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err.response.data.message);
+        window.location = 'http://localhost:3000/';
+      });
+  }, []);
 
-    
-    }, []);
-
-  const showSubmissions = submissions.map(submission => {
-    const {id, title, description, createdOn, deadline, from, submissions} = submission 
-    return(
+  const showSubmissions = submissions.map((submission) => {
+    const {
+      id, title, description, createdOn, deadline, from, submissions,
+    } = submission;
+    return (
       <div className="submission" key={id} id={id}>
-        <h2 className="title"> {title}</h2>
-        <div><b>Description: </b>{description}</div>
-        <div><b>From:</b> {from}</div>
-        <div><b>Created On: </b>{createdOn}</div>
-        <div><b>Deadline: </b>{deadline}</div>
+        <h2 className="title">
+          {' '}
+          {title}
+        </h2>
+        <div>
+          <b>Description: </b>
+          {description}
+        </div>
+        <div>
+          <b>From:</b>
+          {' '}
+          {from}
+        </div>
+        <div>
+          <b>Created On: </b>
+          {createdOn}
+        </div>
+        <div>
+          <b>Deadline: </b>
+          {deadline}
+        </div>
         <div><b>Submissions:</b></div>
-        {submissions.map(submission => {
-          return(
-            <li><ul>{submission.name} : <a href={submission.link}>{submission.link}</a></ul></li>
-          )
-        })}
-        <style jsx>{`
+        {submissions.map((submission) => (
+          <li>
+            <ul>
+              {submission.name}
+              {' '}
+              :
+              {' '}
+              <a href={submission.link}>{submission.link}</a>
+            </ul>
+          </li>
+        ))}
+        <style jsx>
+          {`
           .submission{
             padding: 20px;
             margin: 2% 25%;
@@ -64,42 +88,43 @@ const Submissions = () => {
         `}
         </style>
       </div>
-    )
-  })
+    );
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const title = e.target[0].value
-    const description = e.target[1].value
-    const deadline = e.target[2].value
-    const data = { title, description, deadline }
+    const title = e.target[0].value;
+    const description = e.target[1].value;
+    const deadline = e.target[2].value;
+    const data = { title, description, deadline };
     axios({
       url: 'http://localhost:4000/submissions/create',
       method: 'POST',
-      data: data,
-      withCredentials: true
+      data,
+      withCredentials: true,
     })
-    .then(res => {
-      console.log(res.data)
-      document.getElementById('message').innerText = res.data.message
-    })
-    .catch(err => console.error(err))
-  }
+      .then((res) => {
+        console.log(res.data);
+        document.getElementById('message').innerText = res.data.message;
+      })
+      .catch((err) => console.error(err));
+  };
 
-  return(
+  return (
     <div>
       <Navbar />
       <div className="createAssignment">
         <div><h2 id="message">Create a new assignment</h2></div>
-          <div><form onSubmit={submitHandler}>
-            <div><input type="text" placeholder="Title" id="title"></input></div>
-            <div><input type="text" placeholder="Description" id="description"></input></div>
-            <div><input type="text" placeholder="Deadline" id="deadline"></input></div>
+        <div>
+          <form onSubmit={submitHandler}>
+            <div><input type="text" placeholder="Title" id="title" /></div>
+            <div><input type="text" placeholder="Description" id="description" /></div>
+            <div><input type="text" placeholder="Deadline" id="deadline" /></div>
             <button>Submit</button>
           </form>
-          </div>
-          <style jsx>
-            {`
+        </div>
+        <style jsx>
+          {`
               .createAssignment{
                 text-align: center;
                 padding: 20px;
@@ -134,11 +159,11 @@ const Submissions = () => {
                 box-shadow: 1px 1px 18px -5px rgba(0,0,0,.65)
               }
             `}
-          </style>
-        </div>
-      {showSubmissions}
+        </style>
       </div>
-  )
-  }
+      {showSubmissions}
+    </div>
+  );
+};
 
 export default Submissions;
