@@ -22,12 +22,9 @@ const Navbar = () => {
     axios.get('http://localhost:4000/users/self', { withCredentials: true })
       .then((res) => {
         setRole(res.data.role);
-        console.log('res', res.data);
-      })
-      .catch((err) => {
-        console.log('error', err.response.data.message);
       });
   }, []);
+
   return (
     <div className={styles.navbar}>
       {navbarContent('Home', '/')}

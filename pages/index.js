@@ -6,19 +6,21 @@ import styles from '../styles/Home.module.css';
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(0);
   const [role, setRole] = useState('');
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState('assignments');
+
+  const selectPage = (role) => {
+    if (role === 'teacher') setUrl('submissions');
+  };
+
   useEffect(() => {
     axios.get('http://localhost:4000/users/self', { withCredentials: true })
       .then((res) => {
         setIsLoggedIn(1);
         setRole(res.data.role);
-        role === 'student' ? setUrl('assignments') : setUrl('submissions');
-        console.log('res', res.data);
-      })
-      .catch((err) => {
-        console.log('error', err.response.data.message);
+        selectPage(role);
       });
   }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -30,7 +32,10 @@ export default function Home() {
         <h1 className={styles.title}>
           <p>
             Welcome to
-            <span id={styles.projectName}>College Portal!</span>
+            <span id={styles.projectName}>
+              {' '}
+              College Portal!
+            </span>
           </p>
         </h1>
         { isLoggedIn

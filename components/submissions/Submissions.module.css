@@ -1,0 +1,57 @@
+.submission{
+  padding: 20px;
+  margin: 2% 25%;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+}
+
+.ul{
+  margin: 0;
+  padding-left: 10px;
+}
+
+.li{
+  margin-left: 20px;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+.createAssignment{
+  text-align: center;
+  padding: 20px;
+  margin: 2% 35%;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+}
+
+.input {
+  border: 0.5px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  width: 40%;
+}
+
+.submitBtn {
+  margin: 0 auto;
+  display: block;
+  width: 40%;
+  padding: 10px;
+  border-radius: 1px;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 0 15px -7px rgba(0,0,0,.65);
+  background-color: limegreen;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitBtn:hover{
+  box-shadow: 1px 1px 18px -5px rgba(0,0,0,.65)
+}

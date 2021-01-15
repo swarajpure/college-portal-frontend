@@ -1,0 +1,60 @@
+.container {
+  text-align: center;
+  padding: 20px;
+  margin: 2% 35%;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#content {
+  border: 0.5px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 10px;
+  margin: 0 auto;
+  margin-bottom:15px;
+  display: block;
+  font-size: 1rem;
+  width: 40%;
+}
+
+button {
+  margin: 0 auto;
+  display: block;
+  width: 40%;
+  padding: 10px;
+  border-radius: 1px;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 0 15px -7px rgba(0,0,0,.65);
+  background-color: limegreen;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.postBody {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 2% 25%;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+}
+
+.contentAndAuthor{
+  margin-left: 20px;
+}
+
+.content{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.allPosts {
+  margin-top: 4%;
+}
