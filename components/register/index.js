@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './Register.module.css';
 
 const Register = () => {
+  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -19,7 +20,7 @@ const Register = () => {
       name, email, password, role,
     };
     axios({
-      url: 'http://localhost:4000/users/register',
+      url: '/users/register',
       method: 'POST',
       data,
       withCredentials: true,
@@ -27,7 +28,7 @@ const Register = () => {
       .then((res) => {
         setMessage(res.data.message);
         if (res.statusText === 'OK') {
-          window.location = 'http://localhost:3000/login';
+          window.location = `${baseUiUrl}/login`;
         }
       })
       .catch((err) => setMessage(err.response.data.message));

@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const signout = () => {
+  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   useEffect(() => {
-    axios.get('http://localhost:4000/users/signout', { withCredentials: true })
-      .then(window.location = 'http://localhost:3000');
+    axios.get('/users/signout', { withCredentials: true })
+      .then(window.location = `${baseUiUrl}`);
   }, []);
   return (<></>);
 };

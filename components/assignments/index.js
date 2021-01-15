@@ -3,17 +3,18 @@ import React, { useState, useEffect } from 'react';
 import styles from './Assignments.module.css';
 
 const Assignments = () => {
+  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [assignments, setAssignments] = useState([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:4000/users/self', { withCredentials: true })
+    axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
         alert(err.response.data.message);
-        window.location = 'http://localhost:3000/login';
+        window.location = `${baseUiUrl}/login`;
       });
 
-    axios.get('http://localhost:4000/assignments', { withCredentials: true })
+    axios.get('/assignments', { withCredentials: true })
       .then((res) => {
         setAssignments(res.data);
       });
@@ -25,7 +26,7 @@ const Assignments = () => {
     const link = e.target[0].value;
     const body = { id, link };
     axios({
-      url: 'http://localhost:4000/assignments/submit',
+      url: '/assignments/submit',
       method: 'POST',
       data: body,
       withCredentials: true,

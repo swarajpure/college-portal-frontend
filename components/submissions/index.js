@@ -4,22 +4,23 @@ import Navbar from '../navbar';
 import styles from './Submissions.module.css';
 
 const Submissions = () => {
+  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [submissions, setsubmissions] = useState([]);
   const [message, setMessage] = useState('Create a new assignment');
   useEffect(() => {
-    axios.get('http://localhost:4000/users/self', { withCredentials: true })
+    axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
         alert(err.response.data.message);
-        window.location = 'http://localhost:3000/login';
+        window.location = `${baseUiUrl}/login`;
       });
 
-    axios.get('http://localhost:4000/submissions', { withCredentials: true })
+    axios.get('/submissions', { withCredentials: true })
       .then((res) => {
         setsubmissions(res.data);
       })
       .catch((err) => {
         alert(err.response.data.message);
-        window.location = 'http://localhost:3000/';
+        window.location = `${baseUiUrl}`;
       });
   }, []);
 
@@ -73,7 +74,7 @@ const Submissions = () => {
     const deadline = e.target[2].value;
     const data = { title, description, deadline };
     axios({
-      url: 'http://localhost:4000/submissions/create',
+      url: '/submissions/create',
       method: 'POST',
       data,
       withCredentials: true,

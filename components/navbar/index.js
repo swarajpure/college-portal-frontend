@@ -19,7 +19,7 @@ const Navbar = () => {
   const [role, setRole] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:4000/users/self', { withCredentials: true })
+    axios.get('/users/self', { withCredentials: true })
       .then((res) => {
         setRole(res.data.role);
       });

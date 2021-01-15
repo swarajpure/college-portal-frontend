@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './Login.module.css';
 
 const Login = () => {
+  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [message, setMessage] = useState('Login');
@@ -13,7 +14,7 @@ const Login = () => {
       email, password,
     };
     axios({
-      url: 'http://localhost:4000/users/login',
+      url: '/users/login',
       method: 'POST',
       data,
       withCredentials: true,
@@ -21,7 +22,7 @@ const Login = () => {
       .then((res) => {
         setMessage(res.data.message);
         if (res.statusText === 'OK') {
-          window.location = 'http://localhost:3000/';
+          window.location = `${baseUiUrl}`;
         }
       })
       .catch((err) => setMessage(err.response.data.message));

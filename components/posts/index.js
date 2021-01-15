@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './Posts.module.css';
 
 const Posts = () => {
+  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
@@ -10,28 +11,28 @@ const Posts = () => {
   const [message, setMessage] = useState('Create Post');
 
   useEffect(() => {
-    axios.get('http://localhost:4000/posts/', { withCredentials: true })
+    axios.get('/posts/', { withCredentials: true })
       .then((res) => {
         setPosts(res.data);
       });
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/users/self', { withCredentials: true })
+    axios.get('/users/self', { withCredentials: true })
       .then((res) => {
         setAuthor(res.data.name);
         setRole(res.data.role);
       })
       .catch((err) => {
         alert(`${err.response.data.message}`);
-        window.location = 'http://localhost:3000/login';
+        window.location = `${baseUiUrl}/login`;
       });
   }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
     axios({
-      url: 'http://localhost:4000/posts/create',
+      url: '/posts/create',
       method: 'POST',
       data: { author, content },
       withCredentials: true,
