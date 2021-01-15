@@ -1,45 +1,45 @@
 import { useEffect, useState } from 'react';
-import Axios from "axios";
+import Axios from 'axios';
 
 const CreatePost = () => {
-    const [content, setContent] = useState('');
-    const [author, setAuthor] = useState('');
+  const [content, setContent] = useState('');
+  const [author, setAuthor] = useState('');
 
-    useEffect(() => {
-        Axios.get('http://localhost:4000/users/self', {withCredentials : true})
-        .then(res => { 
-            setAuthor(res.data.name)
-        })
-        .catch(err => console.log(err))
-    }, []);
-    console.log(author)
-    const submitHandler = (e) => {
-        e.preventDefault();
-        Axios({
-            url: 'http://localhost:4000/posts/create',
-            method: 'POST',
-            data: { author, content },
-            withCredentials: true
-        })
-        .then(res => {
-            console.log(res.data)
-            document.getElementById('message').innerText = res.message
-        })
-        .catch(err => console.log(err))
-    }
+  useEffect(() => {
+    Axios.get('http://localhost:4000/users/self', { withCredentials: true })
+      .then((res) => {
+        setAuthor(res.data.name);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  console.log(author);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    Axios({
+      url: 'http://localhost:4000/posts/create',
+      method: 'POST',
+      data: { author, content },
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res.data);
+        document.getElementById('message').innerText = res.message;
+      })
+      .catch((err) => console.log(err));
+  };
 
-    const changeContent = (e) => {
-        console.log(e.target.value)
-        setContent(e.target.value)
-    }
-    console.log(content)
-    return(
-        <div className='container'>
-            <h1 id='message'>Create Post</h1>
-            <input id='content' type='text' placeholder='Enter your message here!' onChange={changeContent}></input>
-            <button type='submit' onClick={submitHandler}>Post</button>
-            <style jsx>
-                {`
+  const changeContent = (e) => {
+    console.log(e.target.value);
+    setContent(e.target.value);
+  };
+  console.log(content);
+  return (
+    <div className="container">
+      <h1 id="message">Create Post</h1>
+      <input id="content" type="text" placeholder="Enter your message here!" onChange={changeContent} />
+      <button type="submit" onClick={submitHandler}>Post</button>
+      <style jsx>
+        {`
                     .container {
                         text-align: center;
                         padding: 20px;
@@ -78,9 +78,9 @@ const CreatePost = () => {
                         cursor: pointer;
                     }
                 `}
-            </style>
-        </div>
-    )
-}
+      </style>
+    </div>
+  );
+};
 
-export default CreatePost
+export default CreatePost;
