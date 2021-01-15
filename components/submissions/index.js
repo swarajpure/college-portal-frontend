@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Navbar from '../navbar';
 import styles from './Submissions.module.css';
 
 const Submissions = () => {
@@ -59,7 +58,7 @@ const Submissions = () => {
               {' '}
               :
               {' '}
-              <a href={submission.link}>{submission.link}</a>
+              <a className={styles.a} href={submission.link}>{submission.link}</a>
             </ul>
           </li>
         ))}
@@ -86,7 +85,6 @@ const Submissions = () => {
 
   return (
     <div>
-      <Navbar />
       <div className={styles.createAssignment}>
         <div><h2 id="message">{message}</h2></div>
         <div>

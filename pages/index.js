@@ -19,7 +19,8 @@ export default function Home() {
         setIsLoggedIn(1);
         setRole(res.data.role);
         selectPage(role);
-      });
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
