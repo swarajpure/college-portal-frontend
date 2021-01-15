@@ -3,6 +3,7 @@ import Navbar from '../components/navbar';
 
 const viewSubmissions = () => (
   <div>
+    <Navbar />
     <Submissions />
   </div>
 );

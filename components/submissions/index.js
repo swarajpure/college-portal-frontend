@@ -1,16 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-
 import Navbar from '../navbar';
 
 const Submissions = () => {
   const [submissions, setsubmissions] = useState([]);
-  const [userData, setUserData] = useState(null);
   useEffect(() => {
     axios.get('http://localhost:4000/users/self', { withCredentials: true })
-      .then((res) => {
-        setUserData(res.data);
-      })
       .catch((err) => {
         alert(err.response.data.message);
         window.location = 'http://localhost:3000/login';
@@ -120,7 +115,7 @@ const Submissions = () => {
             <div><input type="text" placeholder="Title" id="title" /></div>
             <div><input type="text" placeholder="Description" id="description" /></div>
             <div><input type="text" placeholder="Deadline" id="deadline" /></div>
-            <button>Submit</button>
+            <button type="submit">Submit</button>
           </form>
         </div>
         <style jsx>

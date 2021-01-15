@@ -12,7 +12,7 @@ export default function Home() {
       .then((res) => {
         setIsLoggedIn(1);
         setRole(res.data.role);
-        res.data.role === 'student' ? setUrl('assignments') : setUrl('submissions');
+        role === 'student' ? setUrl('assignments') : setUrl('submissions');
         console.log('res', res.data);
       })
       .catch((err) => {
