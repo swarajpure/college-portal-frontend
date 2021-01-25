@@ -17,7 +17,7 @@ const Login = () => {
       url: '/users/login',
       method: 'POST',
       data,
-      withCredentials: true
+      withCredentials: true,
     })
       .then((res) => {
         setMessage(res.data.message);

@@ -65,7 +65,7 @@ const Posts = () => {
   );
 
   const sortedPosts = [].concat(posts);
-  sortedPosts.sort((a,b) => b.timeStamp - a.timeStamp);
+  sortedPosts.sort((a, b) => b.timeStamp - a.timeStamp);
 
   const DisplayPost = sortedPosts.map((post) => (
     <div className={styles.postBody}>
