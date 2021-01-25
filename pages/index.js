@@ -54,7 +54,7 @@ export default function Home() {
               </a>
               <a href={`${baseUiUrl}/${url}`} className={styles.card}>
                 <h3>Assignments &rarr;</h3>
-                <p>All about assignments!</p>
+                <p>All the assignments and submissions here!</p>
               </a>
             </div>
           )
