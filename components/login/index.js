@@ -34,7 +34,7 @@ const Login = () => {
       <div className={styles.form}>
         <form onSubmit={submitHandler}>
           <div><input type="email" className={styles.input} id="email" placeholder="Enter email" required onChange={(e) => setEmail(e.target.value)} /></div>
-          <div><input type="password" className={styles.input} id="password" placeholder="Enter password" required onChange={(e) => setPassword(e.target.value)} /></div>
+          <div><input type="password" className={styles.input} id="password" placeholder="Enter password" required autoComplete="on" onChange={(e) => setPassword(e.target.value)} /></div>
           <button className={styles.submit} type="submit">Submit</button>
         </form>
       </div>
