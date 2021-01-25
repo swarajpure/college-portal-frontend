@@ -28,7 +28,7 @@ const Register = () => {
       .then((res) => {
         setMessage(res.data.message);
         if (res.statusText === 'OK') {
-          window.open(`${baseUiUrl}/login`, '_self');
+          window.location.href = `${baseUiUrl}/login`;
         }
       })
       .catch((err) => setMessage(err.response.data.message));
