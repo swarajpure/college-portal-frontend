@@ -6,6 +6,8 @@ const Submissions = () => {
   const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [submissions, setsubmissions] = useState([]);
   const [message, setMessage] = useState('Create a new assignment');
+  const [boolNew, setBoolNew] = useState(false);
+
   useEffect(() => {
     axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
@@ -21,9 +23,12 @@ const Submissions = () => {
         alert(err.response.data.message);
         window.location = `${baseUiUrl}`;
       });
-  }, []);
+  }, [boolNew]);
 
-  const showSubmissions = submissions.map((submission) => {
+  const sortedSubmissions = [].concat(submissions);
+  sortedSubmissions.sort((a, b) => b.timeStamp - a.timeStamp);
+
+  const showSubmissions = sortedSubmissions.map((submission) => {
     const {
       id, title, description, createdOn, deadline, from, submissions,
     } = submission;
@@ -80,6 +85,10 @@ const Submissions = () => {
     })
       .then((res) => {
         setMessage(res.data.message);
+        if (res.statusText === 'OK') {
+          const bool = boolNew;
+          setBoolNew(!bool);
+        }
       });
   };
 

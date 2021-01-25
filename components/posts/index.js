@@ -9,13 +9,14 @@ const Posts = () => {
   const [author, setAuthor] = useState('');
   const [role, setRole] = useState('');
   const [message, setMessage] = useState('Create Post');
+  const [boolNew, setBoolNew] = useState(false);
 
   useEffect(() => {
     axios.get('/posts/', { withCredentials: true })
       .then((res) => {
         setPosts(res.data);
       });
-  }, []);
+  }, [boolNew]);
 
   useEffect(() => {
     axios.get('/users/self', { withCredentials: true })
@@ -39,6 +40,13 @@ const Posts = () => {
     })
       .then((res) => {
         setMessage(res.data.message);
+        if (res.statusText === 'OK') {
+          const bool = boolNew;
+          setBoolNew(!bool);
+        }
+      })
+      .catch((err) => {
+        setMessage(err.response.data.message);
       });
   };
 
@@ -48,13 +56,18 @@ const Posts = () => {
 
   const createPost = () => (
     <div className={styles.container}>
-      <h1>{message}</h1>
-      <input id={styles.content} type="text" placeholder="Enter your message here!" onChange={changeContent} />
-      <button type="submit" className={styles.submitBtn} onClick={submitHandler}>Post</button>
+      <form>
+        <h1>{message}</h1>
+        <input id={styles.content} type="text" placeholder="Enter your message here!" onChange={changeContent} />
+        <button type="submit" className={styles.submitBtn} onClick={submitHandler}>Post</button>
+      </form>
     </div>
   );
 
-  const DisplayPost = posts.map((post) => (
+  const sortedPosts = [].concat(posts);
+  sortedPosts.sort((a,b) => b.timeStamp - a.timeStamp);
+
+  const DisplayPost = sortedPosts.map((post) => (
     <div className={styles.postBody}>
       <div className={styles.contentAndAuthor}>
         <div className={styles.content}>

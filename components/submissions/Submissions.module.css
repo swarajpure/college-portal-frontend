@@ -1,6 +1,8 @@
 .submission{
   padding: 20px;
-  margin: 2% 25%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 50%;
   border: 1px solid #f4f4f4;
   border-radius: 10px;
   box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
@@ -22,7 +24,10 @@
 .createAssignment{
   text-align: center;
   padding: 20px;
-  margin: 2% 35%;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 50%;
   border: 1px solid #f4f4f4;
   border-radius: 10px;
   box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
@@ -54,4 +59,16 @@
 
 .submitBtn:hover{
   box-shadow: 1px 1px 18px -5px rgba(0,0,0,.65)
+}
+
+@media (min-device-width: 600px) and (max-device-width: 800px){
+  .submission, .createAssignment{
+    width: 70%;
+  }
+}
+
+@media (max-device-width: 600px) {
+  .submission, .createAssignment{
+    width: 80%;
+  }
 }

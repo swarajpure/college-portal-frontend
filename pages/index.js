@@ -18,7 +18,7 @@ export default function Home() {
       .then((res) => {
         setIsLoggedIn(1);
         setRole(res.data.role);
-        selectPage(role);
+        selectPage(res.data.role);
       })
       .catch((err) => console.log(err));
   }, []);

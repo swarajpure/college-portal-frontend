@@ -1,7 +1,9 @@
 .container {
   text-align: center;
   padding: 20px;
-  margin: 2% 35%;
+  margin: 0 auto;
+  margin-top: 60px;
+  width: 50%;
   border: 1px solid #f4f4f4;
   border-radius: 10px;
   box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
@@ -57,6 +59,10 @@
 }
 
 @media (min-device-width: 600px) and (max-device-width: 800px){
+  .container{
+    width: 70%;
+  }
+
   .postBody {
     display: flex;
     padding: 20px;
@@ -68,6 +74,9 @@
 }
 
 @media (max-device-width: 600px){
+  .container{
+    width: 80%;
+  }
   .postBody {
     display: flex;
     flex-direction: column;
