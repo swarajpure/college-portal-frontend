@@ -5,7 +5,6 @@
   border: 1px solid #f4f4f4;
   border-radius: 10px;
   box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
-  text-align: center;
   display: flex;
   flex-direction: column;
 }
@@ -40,14 +39,12 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin: 2% 25%;
   border: 1px solid #f4f4f4;
   border-radius: 10px;
   box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
-}
-
-.contentAndAuthor{
-  margin-left: 20px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 50%;
 }
 
 .content{
@@ -57,4 +54,27 @@
 
 .allPosts {
   margin-top: 4%;
+}
+
+@media (min-device-width: 600px) and (max-device-width: 800px){
+  .postBody {
+    display: flex;
+    padding: 20px;
+    width: 70%;
+    border: 1px solid #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+  }
+}
+
+@media (max-device-width: 600px){
+  .postBody {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 80%;
+    border: 1px solid #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+  }
 }

@@ -26,3 +26,15 @@
   cursor: pointer;
   margin-left: 10px;
 }
+
+@media (max-device-width: 600px) {
+  .assignment{
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 70%;
+    border: 1px solid #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.65);
+  }
+}
