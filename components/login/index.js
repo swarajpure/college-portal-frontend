@@ -8,9 +8,9 @@ const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [message, setMessage] = useState('Login');
-  const router = useRouter();
 
   const submitHandler = (e) => {
+    const router = useRouter();
     e.preventDefault();
     const data = {
       email, password,
@@ -24,7 +24,7 @@ const Login = () => {
       .then((res) => {
         setMessage(res.data.message);
         if (res.statusText === 'OK') {
-          router.push('/posts');
+          router.push('/');
         }
       })
       .catch((err) => setMessage(err.response.data.message));
