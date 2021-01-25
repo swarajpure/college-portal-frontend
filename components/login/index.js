@@ -22,7 +22,7 @@ const Login = () => {
       .then((res) => {
         setMessage(res.data.message);
         if (res.statusText === 'OK') {
-          window.location = `${baseUiUrl}`;
+          window.open(`${baseUiUrl}`, '_self');
         }
       })
       .catch((err) => setMessage(err.response.data.message));

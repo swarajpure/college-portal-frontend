@@ -11,7 +11,7 @@ const Assignments = () => {
     axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
         alert(err.response.data.message);
-        window.location = `${baseUiUrl}/login`;
+        window.open(`${baseUiUrl}/login`, '_self');
       });
 
     axios.get('/assignments', { withCredentials: true })

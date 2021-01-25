@@ -12,7 +12,7 @@ const Submissions = () => {
     axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
         alert(err.response.data.message);
-        window.location = `${baseUiUrl}/login`;
+        window.open(`${baseUiUrl}/login`, '_self');
       });
 
     axios.get('/submissions', { withCredentials: true })
@@ -21,7 +21,7 @@ const Submissions = () => {
       })
       .catch((err) => {
         alert(err.response.data.message);
-        window.location = `${baseUiUrl}`;
+        window.open(`${baseUiUrl}`, '_self');
       });
   }, [boolNew]);
 

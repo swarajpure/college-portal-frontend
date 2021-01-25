@@ -5,7 +5,7 @@ const signout = () => {
   const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   useEffect(() => {
     axios.get('/users/signout', { withCredentials: true })
-      .then(window.location = `${baseUiUrl}`);
+      .then(window.open(`${baseUiUrl}`, '_self');
   }, []);
   return (<></>);
 };

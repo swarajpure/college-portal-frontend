@@ -26,7 +26,7 @@ const Posts = () => {
       })
       .catch((err) => {
         alert(`${err.response.data.message}`);
-        window.location = `${baseUiUrl}/login`;
+        window.open(`${baseUiUrl}/login`, '_self');
       });
   }, []);
 
