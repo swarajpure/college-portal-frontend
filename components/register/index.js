@@ -5,7 +5,6 @@ import styles from './Register.module.css';
 
 const Register = () => {
   const router = useRouter();
-  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -38,7 +37,7 @@ const Register = () => {
         <form onSubmit={submitHandler}>
           <div><input type="text" className={styles.input} id="name" placeholder="Enter name" required onChange={(e) => setName(e.target.value)} /></div>
           <div><input type="email" className={styles.input} id="email" placeholder="Enter email" required onChange={(e) => setEmail(e.target.value)} /></div>
-          <div><input type="password" className={styles.input} id="password" placeholder="Enter password" required onChange={(e) => setPassword(e.target.value)} autoComplete="on"/></div>
+          <div><input type="password" className={styles.input} id="password" placeholder="Enter password" required onChange={(e) => setPassword(e.target.value)} autoComplete="on" /></div>
           <div className={styles.roleText}>Enter Role:</div>
           <div className={styles.roleSelect}>
             <label htmlFor="role">

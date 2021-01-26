@@ -5,7 +5,6 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [isLoggedIn, setIsLoggedIn] = useState(0);
   const [role, setRole] = useState('');
   const [url, setUrl] = useState('assignments');
@@ -68,15 +67,19 @@ export default function Home() {
           )
           : (
             <div className={styles.grid}>
-              <a href={`${baseUiUrl}/register`} className={styles.card}>
-                <h3>Register &rarr;</h3>
-                <p>Make an account to create your identity!</p>
-              </a>
+              <Link href="/register">
+                <div className={styles.card}>
+                  <h3>Register &rarr;</h3>
+                  <p>Make an account to create your identity!</p>
+                </div>
+              </Link>
 
-              <a href={`${baseUiUrl}/login`} className={styles.card}>
-                <h3>Login &rarr;</h3>
-                <p>Login to access all the features!</p>
-              </a>
+              <Link href="/register">
+                <div className={styles.card}>
+                  <h3>Login &rarr;</h3>
+                  <p>Login to access all the features!</p>
+                </div>
+              </Link>
 
             </div>
           )}

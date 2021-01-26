@@ -20,10 +20,7 @@ const Login = () => {
       data,
       withCredentials: true,
     })
-      .then((res) => {
-        setMessage(res.data.message);
-        router.push('/');
-      })
+      .then(router.push('/'))
       .catch((err) => setMessage(err.response.data.message));
   };
 
