@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import styles from './Posts.module.css';
 
 const Posts = () => {
-  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
+  const router = useRouter();
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
@@ -26,7 +27,7 @@ const Posts = () => {
       })
       .catch((err) => {
         alert(`${err.response.data.message}`);
-        window.open(`${baseUiUrl}/login`, '_self');
+        router.push('/login');
       });
   }, []);
 

@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import styles from './Register.module.css';
 
 const Register = () => {
+  const router = useRouter();
   const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
@@ -25,12 +27,7 @@ const Register = () => {
       data,
       withCredentials: true,
     })
-      .then((res) => {
-        setMessage(res.data.message);
-        if (res.statusText === 'OK') {
-          window.location.href = `${baseUiUrl}/login`;
-        }
-      })
+      .then(router.push('/login'))
       .catch((err) => setMessage(err.response.data.message));
   };
 

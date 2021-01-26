@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styles from './Submissions.module.css';
 
 const Submissions = () => {
-  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
+  const router = useRouter();
   const [submissions, setsubmissions] = useState([]);
   const [message, setMessage] = useState('Create a new assignment');
   const [boolNew, setBoolNew] = useState(false);
@@ -12,7 +13,7 @@ const Submissions = () => {
     axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
         alert(err.response.data.message);
-        window.open(`${baseUiUrl}/login`, '_self');
+        router.push('/login');
       });
 
     axios.get('/submissions', { withCredentials: true })
@@ -21,7 +22,7 @@ const Submissions = () => {
       })
       .catch((err) => {
         alert(err.response.data.message);
-        window.open(`${baseUiUrl}`, '_self');
+        router.push('/');
       });
   }, [boolNew]);
 
