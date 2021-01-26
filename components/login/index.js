@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Router } from 'next/router';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import styles from './Login.module.css';
 
 const Login = () => {
+  const router = useRouter();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [message, setMessage] = useState('Login');
@@ -21,9 +22,7 @@ const Login = () => {
     })
       .then((res) => {
         setMessage(res.data.message);
-        if (res.statusText === 'OK') {
-          Router.push('/');
-        }
+        router.push('/');
       })
       .catch((err) => setMessage(err.response.data.message));
   };

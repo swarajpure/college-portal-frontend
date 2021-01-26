@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { Router } from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from './Assignments.module.css';
 
 const Assignments = () => {
-  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
+  const router = useRouter();
   const [assignments, setAssignments] = useState([]);
   const [message, setMessage] = useState('');
 
@@ -12,7 +12,7 @@ const Assignments = () => {
     axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
         alert(err.response.data.message);
-        Router.push('/login');
+        router.push('/login');
       });
 
     axios.get('/assignments', { withCredentials: true })
