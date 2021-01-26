@@ -74,7 +74,7 @@ export default function Home() {
                 </div>
               </Link>
 
-              <Link href="/register">
+              <Link href="/login">
                 <div className={styles.card}>
                   <h3>Login &rarr;</h3>
                   <p>Login to access all the features!</p>
