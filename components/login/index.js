@@ -23,7 +23,7 @@ const Login = () => {
       .then((res) => {
         setMessage(res.data.message);
         if (res.statusText === 'OK') {
-          router.push('/posts');
+          router.push('/', '/');
         }
       })
       .catch((err) => setMessage(err.response.data.message));
