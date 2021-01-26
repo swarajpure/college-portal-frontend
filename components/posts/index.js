@@ -59,7 +59,7 @@ const Posts = () => {
     <div className={styles.container}>
       <form>
         <h1>{message}</h1>
-        <input id={styles.content} type="text" placeholder="Enter your message here!" onChange={changeContent} />
+        <input id={styles.content} type="text" placeholder="Enter your message here!" required onChange={changeContent} />
         <button type="submit" className={styles.submitBtn} onClick={submitHandler}>Post</button>
       </form>
     </div>

@@ -99,9 +99,9 @@ const Submissions = () => {
         <div><h2 id="message">{message}</h2></div>
         <div>
           <form onSubmit={submitHandler}>
-            <div><input className={styles.input} type="text" placeholder="Title" id="title" /></div>
-            <div><input className={styles.input} type="text" placeholder="Description" id="description" /></div>
-            <div><input className={styles.input} type="text" placeholder="Deadline" id="deadline" /></div>
+            <div><input className={styles.input} type="text" required placeholder="Title" id="title" /></div>
+            <div><input className={styles.input} type="text" required placeholder="Description" id="description" /></div>
+            <div><input className={styles.input} type="text" required placeholder="Deadline" id="deadline" /></div>
             <button className={styles.submitBtn} type="submit">Submit</button>
           </form>
         </div>

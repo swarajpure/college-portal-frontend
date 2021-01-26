@@ -65,7 +65,7 @@ const Assignments = () => {
           {deadline}
         </div>
         <form id="form-message" onSubmit={submitHandler}>
-          <input type="url" className={styles.input} placeholder="Submit your assignment's drive link:" />
+          <input type="url" className={styles.input} required placeholder="Submit your assignment's drive link:" />
           <button type="submit" className={styles.submitBtn}>Submit</button>
         </form>
         <div className="msg">{message}</div>
