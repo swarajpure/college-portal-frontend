@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Router from 'next/router';
+import { Router } from 'next/router';
 import axios from 'axios';
 import styles from './Login.module.css';
 

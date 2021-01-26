@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Router } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from './Assignments.module.css';
 
@@ -11,7 +12,7 @@ const Assignments = () => {
     axios.get('/users/self', { withCredentials: true })
       .catch((err) => {
         alert(err.response.data.message);
-        window.open(`${baseUiUrl}/login`, '_self');
+        Router.push('/login');
       });
 
     axios.get('/assignments', { withCredentials: true })
