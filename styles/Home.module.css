@@ -39,9 +39,9 @@
   text-decoration: none;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
+.title div:hover,
+.title div:focus,
+.title div:active {
   text-decoration: underline;
 }
 
@@ -95,6 +95,7 @@
 .card:active {
   color: #0070f3;
   border-color: #0070f3;
+  cursor: pointer;
 }
 
 .card h3 {

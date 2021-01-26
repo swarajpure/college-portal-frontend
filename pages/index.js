@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -43,19 +44,26 @@ export default function Home() {
         { isLoggedIn
           ? (
             <div className={styles.grid}>
-              <a href={`${baseUiUrl}`} className={styles.card}>
-                <h3>Home &rarr;</h3>
-                <p>Home sweet home!</p>
-              </a>
+              <Link href="/">
+                <div className={styles.card}>
+                  <h3>Home &rarr;</h3>
+                  <p>Home sweet home!</p>
+                </div>
+              </Link>
 
-              <a href={`${baseUiUrl}/posts`} className={styles.card}>
-                <h3>Posts &rarr;</h3>
-                <p>All the posts go here!</p>
-              </a>
-              <a href={`${baseUiUrl}/${url}`} className={styles.card}>
-                <h3>Assignments &rarr;</h3>
-                <p>All the assignments and submissions here!</p>
-              </a>
+              <Link href="/posts">
+                <div className={styles.card}>
+                  <h3>Posts &rarr;</h3>
+                  <p>All the posts go here!</p>
+                </div>
+              </Link>
+
+              <Link href={`/${url}`}>
+                <div className={styles.card}>
+                  <h3>Assignments &rarr;</h3>
+                  <p>All the assignments and submissions here!</p>
+                </div>
+              </Link>
             </div>
           )
           : (
