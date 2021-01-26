@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import styles from './Login.module.css';
 
 const Login = () => {
-  const router = useRouter();
+  const homePage = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [message, setMessage] = useState('Login');
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const data = {
       email, password,
     };
@@ -20,7 +20,10 @@ const Login = () => {
       data,
       withCredentials: true,
     })
-      .then(router.push('/'))
+      .then((res) => {
+        alert(res.data.message);
+        window.location = homePage;
+      })
       .catch((err) => setMessage(err.response.data.message));
   };
 
