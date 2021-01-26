@@ -4,13 +4,12 @@ import axios from 'axios';
 import styles from './Login.module.css';
 
 const Login = () => {
-  const baseUiUrl = process.env.NEXT_PUBLIC_BASE_UI_URL;
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [message, setMessage] = useState('Login');
+  const router = useRouter();
 
   const submitHandler = (e) => {
-    const router = useRouter();
     e.preventDefault();
     const data = {
       email, password,
