@@ -9,6 +9,10 @@ const Login = () => {
   const [message, setMessage] = useState('Login');
   const router = useRouter();
 
+  const redirect = (path) => {
+    router.push(path);
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -23,7 +27,7 @@ const Login = () => {
       .then((res) => {
         setMessage(res.data.message);
         if (res.statusText === 'OK') {
-          router.push('/posts');
+          redirect('/');
         }
       })
       .catch((err) => setMessage(err.response.data.message));
